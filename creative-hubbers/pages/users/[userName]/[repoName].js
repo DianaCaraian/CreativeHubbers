@@ -1,10 +1,33 @@
 import React from "react";
 import styles from "../../../styles/Repo.module.css";
-import { Typography } from "@material-ui/core";
+import { CardContent, Typography } from "@material-ui/core";
 import FolderIcon from "@material-ui/icons/Folder";
 import InsertDriveFileOutlinedIcon from "@material-ui/icons/InsertDriveFileOutlined";
+import { makeStyles } from "@material-ui/core/styles";
+import CardActionArea from "@material-ui/core/CardActionArea";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    padding: "30px",
+  },
+  details: {
+    display: "flex",
+    flexDirection: "column",
+    padding: "30px",
+  },
+  content: {
+    flex: "1 0 auto",
+  },
+  cover: {
+    width: "25%",
+    height: "100%",
+  },
+}));
 
 const repoName = () => {
+  const classes = useStyles();
+
   const repos = [
     {
       type: "file",
@@ -54,14 +77,16 @@ const repoName = () => {
           {repos.map((repo) => (
             <div className={styles.fileElem}>
               {repo.type === "dir" ? (
-                <div class={styles.folder}>
-                  <FolderIcon className={styles.icon} />
-                  <a href="#">
-                    <Typography gutterBottom variant="h4" component="h4">
-                      {repo.name}
-                    </Typography>
-                  </a>
-                </div>
+                <CardActionArea>
+                  <div class={styles.folder}>
+                    <FolderIcon className={styles.icon} />
+                    <a href="#">
+                      <Typography gutterBottom variant="h4" component="h4">
+                        {repo.name}
+                      </Typography>
+                    </a>
+                  </div>
+                </CardActionArea>
               ) : (
                 <div>
                   <Typography gutterBottom variant="h4" component="h4">
