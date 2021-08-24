@@ -1,5 +1,12 @@
 .foldername {
   background-color: antiquewhite;
+  /* padding: 10px 20px; */
+  height: 100%;
+}
+
+.filename {
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .content {
@@ -7,4 +14,13 @@
   border: 1px solid black;
   width: 75%;
   margin: 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.title {
+  /* padding: 20px 13%;
+} */
 }
