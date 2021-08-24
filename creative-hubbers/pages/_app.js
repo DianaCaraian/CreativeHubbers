@@ -1,5 +1,7 @@
 import '../styles/globals.css';
-
+import '@fontsource/lexend';
+import Typography from "@material-ui/core/Typography";
+import MainPage from '../Components/MainPage'
 import { ThemeProvider } from '@material-ui/styles';
 import theme from '../utils/theme';
 import Layout from '../Components/Layout';
@@ -12,15 +14,29 @@ import { Provider } from 'react-redux';
 
 const store = createStore(allReducers, composeWithDevTools()); //composeWithDevTools is for the chrome extension
 function MyApp({ Component, pageProps }) {
-  return (
-    <Provider store={store}>
+ 
+    switch (Component.name) {
+    case "Home":
+      return (
+        <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <MainPage />   
       </ThemeProvider>
-    </Provider>
-  );
-}
+      )
+    default:
+      return (
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+            <Typography variant="h1">Hello</Typography>
+          </Layout>
+     </ThemeProvider>
+     </Provider>
+      );
+  }
+};
 
 export default MyApp;
+
+
+
