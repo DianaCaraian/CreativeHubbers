@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../../styles/Repo.module.css";
 import { Typography } from "@material-ui/core";
 import FolderIcon from "@material-ui/icons/Folder";
-import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
+import InsertDriveFileOutlinedIcon from "@material-ui/icons/InsertDriveFileOutlined";
 
 const repoName = () => {
   const repos = [
@@ -54,13 +54,22 @@ const repoName = () => {
           {repos.map((repo) => (
             <div className={styles.fileElem}>
               {repo.type === "dir" ? (
-                <FolderIcon className={styles.icon} />
+                <div class={styles.folder}>
+                  <FolderIcon className={styles.icon} />
+                  <a href="#">
+                    <Typography gutterBottom variant="h4" component="h4">
+                      {repo.name}
+                    </Typography>
+                  </a>
+                </div>
               ) : (
-                <InsertDriveFileIcon className={styles.icon} />
+                <div>
+                  <Typography gutterBottom variant="h4" component="h4">
+                    <InsertDriveFileOutlinedIcon className={styles.icon} />
+                    {repo.name}
+                  </Typography>
+                </div>
               )}
-              <Typography gutterBottom variant="h4" component="h4">
-                {repo.name}
-              </Typography>
             </div>
           ))}
         </div>
