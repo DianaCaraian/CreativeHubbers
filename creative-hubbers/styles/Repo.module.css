@@ -1,9 +1,5 @@
 .foldername {
-  /* background-color: antiquewhite; */
   padding: 10px 20px;
-  /* margin-top: -1px; */
-  /* border-bottom: 1px solid black;
-  border-top: 1px solid black; */
   border-radius: 10px;
 }
 
@@ -37,4 +33,9 @@
 
 .title {
   padding: 20px 13%;
+}
+
+.folder {
+  display: flex;
+  flex-direction: row;
 }
