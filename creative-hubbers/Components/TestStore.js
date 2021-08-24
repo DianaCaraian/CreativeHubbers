@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
 
 const TestStore = () => {
-  const users = useSelector((state) => state.user.users);
+  const users = useSelector((state) => state.user.users); //un fel de subscribe la changes
   console.log('users: ', users);
   return (
     <>
