@@ -91,23 +91,42 @@ const repoName = () => {
         <div className={styles.fileContainer}>
           {repos !== undefined ? (
             repos.map((repo) => (
-              <div className={styles.fileElem} key={repo.name}>
+              <div key={repo.name}>
                 {repo.type === "dir" ? (
-                  <CardActionArea>
-                    <div className={styles.folder}>
-                      <FolderIcon className={styles.icon} />
-                      <a href="#">
+                  <Link
+                    className="btn btn-primary link"
+                    className={styles.fileElem}
+                  >
+                    <CardActionArea
+                      onClick={() => {
+                        fetchRepo(repo.name);
+                      }}
+                    >
+                      <div className={styles.folder}>
+                        <FolderIcon className={styles.icon} />
                         <Typography gutterBottom variant="h4" component="h4">
                           {repo.name}
                         </Typography>
-                      </a>
-                    </div>
-                  </CardActionArea>
+                      </div>
+                    </CardActionArea>
+                  </Link>
                 ) : (
                   <div>
-                    <Typography gutterBottom variant="h4" component="h4">
-                      <InsertDriveFileOutlinedIcon className={styles.icon} />
-                      {repo.name}
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="h4"
+                      className={styles.fileElem}
+                    >
+                      <div>
+                        <InsertDriveFileOutlinedIcon className={styles.icon} />
+                      </div>
+                      <div
+                        onClick={() => console.log("Apasa pe buton")}
+                        className={styles.fileBtn}
+                      >
+                        {repo.name}
+                      </div>
                     </Typography>
                   </div>
                 )}
