@@ -6,77 +6,107 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { Card } from '@material-ui/core';
+import { GridList } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
     flexGrow: 1,
+    width: '60%',
+    height: '575px',
+    backgroundColor: 'white',
+    position: 'relative',
+    margin: '0 auto',
+    top: '175px',
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    borderRight: '4px solid transparent',
+    height: '100% ',
   },
   media: {
-    height: 350,
+    height: 360,
   },
   cards: {
-    maxWidth: 800,
+    height: '200px',
+  },
+  bckCol: {
+    backgroundColor: 'white',
+  },
+  typoBorder: {
+    width: '175px',
+    borderBottom: '1px solid black',
   },
 }));
 
 export default function Users({ repos }) {
   const classes = useStyles();
+  const users = useSelector((state) => state.user.users);
 
   return (
     <div className={classes.root}>
       <Grid container spacing={12}>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>
+          <Card className={classes.paper}>
             <CardMedia
-              component='img'
+              component="img"
               className={classes.media}
-              src='https://images.unsplash.com/photo-1498804103079-a6351b050096?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80'
-              title='Contemplative Reptile'
+              src={users.avatar_url}
+              title="Contemplative Reptile"
             />
             <CardContent>
-              <Typography gutterBottom variant='h3' component='h3'></Typography>
-              <Typography gutterBottom variant='h5' component='h5'></Typography>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                urna et urna, nulla quis nisi ac. Accumsan ut ut amet consequat
-                sit sed accumsan mi.
+              <Typography gutterBottom variant="h3" component="h3"></Typography>
+              <Typography gutterBottom variant="h5" component="h5">
+                {users.login}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {users.bio}
               </Typography>
             </CardContent>
-          </Paper>
+          </Card>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} className={classes.bckCol}>
           <CardContent>
-            <Typography gutterBottom variant='h2' component='h2'>
+            <Typography
+              gutterBottom
+              variant="h2"
+              component="h2"
+              className={classes.typoBorder}
+            >
               Repositories
             </Typography>
           </CardContent>
-          {repos.map((repo) => (
-            <div className={classes.cards}>
-              <CardActionArea>
-                <CardContent>
-                  <Typography gutterBottom variant='h5' component='h5'>
-                    Repo name: {repo.name}
-                  </Typography>
-                  <Typography
-                    variant='body2'
-                    color='textSecondary'
-                    component='p'>
-                    Description: {repo.description}
-                  </Typography>
-                  <Typography gutterBottom variant='h6' component='h6'>
-                    Language: {repo.language}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </div>
-          ))}
+          <GridList
+            style={{ height: 500, width: 866, overflow: 'auto' }}
+            spacing="5"
+            cols="2"
+          >
+            {repos.map((repo) => (
+              <div className={classes.cards}>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h5">
+                      Repo name: {repo.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Description: {repo.description}
+                    </Typography>
+                    <Typography gutterBottom variant="h6" component="h6">
+                      Language: {repo.language}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </div>
+            ))}
+          </GridList>
         </Grid>
       </Grid>
     </div>

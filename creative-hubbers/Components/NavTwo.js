@@ -2,6 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import styles from "../styles/Home.module.css";
+import leftHeroBranchesImage from '../Images/heroImage.png'
+import heroAStrouantImage from '../Images/astro.png'
+import Image from "next/image";
+
 
 const useStyles = makeStyles((theme) => ({
   menu:{
@@ -35,10 +40,32 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ButtonAppBar() {
+export default function NavTwo() {
   const classes = useStyles();
 
   return (
+    <>
+    <Box className={styles.heroStyles}>  
+              
+          <Box className={styles.heroBranchesImage}>
+            <Image 
+              className={styles.left}
+              src = {leftHeroBranchesImage}
+              alt = "Aici este un shape"
+              width ="100px"
+              height= "400px"
+            />
+          </Box>
+          <Box className={styles.heroAStrouantImage}>
+            <Image 
+              className={styles.left}
+              src = {heroAStrouantImage}
+              alt = "Aici este un shape"
+              width ="200px"
+              height= "200px"
+            />
+          </Box>
+      </Box>
     <div className={classes.navbar}>  
           <Typography className={classes.logo}>
             CreativeHubbers
@@ -48,13 +75,8 @@ export default function ButtonAppBar() {
             <Typography>
             <a href ={'http://localhost:3000'}>Home</a>
             </Typography>   
-            <Typography>
-              <a href ="#">Team</a>
-            </Typography>
-            <Typography>
-              <a href="#">Requirements</a>
-            </Typography>
           </Box>
     </div>
+    </>
   );
 }

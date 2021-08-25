@@ -36,18 +36,16 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'hsl(197, 37%, 64%)'
   },
 }));
 const TestStore = () => {
   const classes = useStyles();
   const users = useSelector((state) => state.user.users); //un fel de subscribe la change
-  console.log('users: ', users);
+  
   return (
     <>
-      <Typography variant='h6'>{users.login}</Typography>
       <div className = {classes.mareDiv}>
-      <Grid container className = {classes.gridC}>
+      <Grid container>
       <Card className={classes.root}>
           <CardMedia
         className={classes.cover}

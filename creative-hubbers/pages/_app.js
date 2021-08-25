@@ -14,7 +14,7 @@ import { Provider } from 'react-redux';
 const store = createStore(allReducers, composeWithDevTools()); //composeWithDevTools is for the chrome extension
 function MyApp({ Component, pageProps }) {
  
-    switch (Component.name) {
+   switch (Component.name) {
     case "Home":
       return (
         <Provider store={store}>
@@ -23,20 +23,23 @@ function MyApp({ Component, pageProps }) {
           </ThemeProvider>
         </Provider>
       )
-      default:
+      default: 
       return (
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <Layout>
-            </Layout><Component {...pageProps} />
+              <Component {...pageProps} />
+            </Layout>
           </ThemeProvider>
         </Provider>
      
       );
-  }
+   }
 };
 
 export default MyApp;
+
+
 
 
 
