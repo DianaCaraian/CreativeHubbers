@@ -73,7 +73,7 @@ export default function NavTwo() {
           
           <Box className = {classes.menu}>
             <Typography>
-            <a href ={'../Tasks'}>Home</a>
+            <a href ={'http://localhost:3000'}>Home</a>
             </Typography>   
           </Box>
     </div>
