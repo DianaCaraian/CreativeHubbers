@@ -7,13 +7,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-
+import { GridList } from '@material-ui/core';
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+
   },
   paper: {
     padding: theme.spacing(2),
@@ -21,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   media: {
-    height: 350,
+    height: 460,
   },
   cards: {
-    maxWidth: 800,
+    height:240,
+    width: 600,
   },
 }));
 
@@ -36,7 +38,7 @@ export default function Users({repos}) {
 
  <div className={classes.root}>
       <Grid container spacing={12}>
-        <Grid item xs={3} >
+        <Grid item xs={4} >
           <Paper className={classes.paper}>               
                     <CardMedia
                         component='img'
@@ -45,14 +47,14 @@ export default function Users({repos}) {
                         title="Contemplative Reptile"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h3" component="h3">
-                            
+                        <Typography gutterBottom variant="h3" component="h3"> 
+                        {users.login}        
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h5">
-                          {users.login}                          
+                        {users.location}                
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce urna et urna, nulla quis nisi ac. Accumsan ut ut amet consequat sit sed accumsan mi.
+                        {users.bio}                      
                         </Typography>
                     </CardContent>
             </Paper> 
@@ -63,6 +65,7 @@ export default function Users({repos}) {
                      Repositories
                </Typography>
                </CardContent>
+               <GridList style = {{maxHeight:600, maxWidth:1000, overflow:'auto'}} spacing="5" cols='2'>
                 {repos.map(
                   (repo) =>
                     <div className={classes.cards}>
@@ -82,6 +85,7 @@ export default function Users({repos}) {
                 </div>
 
                 )}
+                </GridList>
                 
         </Grid>
     </Grid>
