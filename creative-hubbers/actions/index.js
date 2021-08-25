@@ -4,3 +4,9 @@ export const changeName = (name) => {
     name: name,
   };
 };
+export const getUsers = (payload) => {
+  return {
+    type: 'GET_USERS',
+    payload: payload
+  };
+};
