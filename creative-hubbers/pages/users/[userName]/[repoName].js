@@ -8,8 +8,6 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getRepos } from "../../../actions";
-//import { repos } from "../../../constants";
-import Repo from "../../../Components/Repo";
 
 const useStyles = makeStyles((theme) => ({
   root: {
