@@ -1,12 +1,11 @@
-// import Navbar from './Navbar';
-import Footer from './Footer';
+import React from "react";
+import NavTwo from "./NavTwo";
 
 const Layout = (props) => {
   return (
     <>
-      {/* <Navbar /> */}
+      <NavTwo/>
       {props.children}
-      <Footer />
     </>
   );
 };

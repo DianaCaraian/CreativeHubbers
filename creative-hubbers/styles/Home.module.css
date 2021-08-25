@@ -138,3 +138,12 @@
     font-style: italic;
     font-size:35px;
   }
+
+  .inputz{
+      margin-right: 20px;
+  }
+
+  .inputz:focus{
+      outline: none;
+      border: none;
+  }
