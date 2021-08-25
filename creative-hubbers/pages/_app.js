@@ -13,7 +13,6 @@ import { Provider } from 'react-redux';
 
 const store = createStore(allReducers, composeWithDevTools()); //composeWithDevTools is for the chrome extension
 function MyApp({ Component, pageProps }) {
- 
     switch (Component.name) {
     case "Home":
       return (

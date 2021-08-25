@@ -6,11 +6,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { useRouter } from 'next/router'
-
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
