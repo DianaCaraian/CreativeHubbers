@@ -1,13 +1,17 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import { Typography } from "@material-ui/core";
-import { Button } from "@material-ui/core";
-import { useRouter } from "next/router";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import { Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { Card } from '@material-ui/core';
+import { GridList } from '@material-ui/core';
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,11 +46,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Users({ repos }) {
-  const classes = useStyles();
+export default function Users({repos}) {
+        const classes = useStyles();
+        const users = useSelector((state) => state.user.users);
 
   return (
-    <div className={classes.root}>
+
+ <div className={classes.root}>
       <Grid container spacing={12}>
         <Grid item xs={3} >
           <Card className={classes.paper}>               
@@ -58,10 +64,10 @@ export default function Users({ repos }) {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h3" component="h3">
-                            {users.login} 
+                            
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h5">
-                                   {users.location}                
+                          {users.login}                          
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                            {users.bio}
@@ -96,15 +102,15 @@ export default function Users({ repos }) {
                 )}
                 </GridList>                
         </Grid>
-      </Grid>
-    </div>
-  );
+    </Grid>
+ </div>
+  );  
 }
 export async function getServerSideProps(context) {
-  const { userName } = context.query;
+  const {userName} = context.query;
   // Fetch data from external API
-  const res = await fetch(`https://api.github.com/users/${userName}/repos`);
-  const repos = await res.json();
+  const res = await fetch(`https://api.github.com/users/${userName}/repos`)
+  const repos = await res.json()
   // Pass data to the page via props
-  return { props: { repos } };
+  return {props: {repos}}
 }
