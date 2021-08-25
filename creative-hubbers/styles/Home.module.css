@@ -1,0 +1,140 @@
+.heroStyles{
+    background-image: url("../Images/space-background.jpg");
+    background-color:aquamarine;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width:100%;
+    min-height: 100vh;
+}
+
+.heroBranchesImage{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height:100%;
+    transform:rotate(1deg);
+}
+
+.heroAStrouantImage{
+    position: absolute;
+    right:20px;
+    bottom:20px;
+    transform:rotate(-10deg);
+    animation: moveAstronaut infinite 7s ease;
+}
+
+@keyframes moveAstronaut{
+    0%{
+        bottom:50px;
+    }
+    50%{
+        bottom:10px;
+    }
+    100%{
+        bottom:50px;
+    }
+}
+
+.HeroContent{
+    position: relative;
+    width:100%;
+    min-height:100vh;
+    color:white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* z-index: 10; */
+    background-color: transparent;
+}
+.heroBoxes{
+    text-align: center;
+}
+
+.taskTitle{
+    padding:30px 0;
+}
+.taskBox{
+    text-align: center;
+    width:800px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.taskText{
+    width:500px;
+    max-width: 600px;
+}
+
+.teamBoxes{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:800px;
+    /* z-index: 1; */
+}
+
+.teamImages{
+    padding:30px;
+    margin:50px;
+    border-radius: 50%;
+}
+.teamTitle{
+    text-align: center;
+    padding-bottom: 5%;
+}
+
+.teamBox{
+    text-align:center;
+}
+
+.HeroContentTasks{
+    padding-top:10%;
+}
+
+.inputBox{
+    border:2px solid white;
+    width:200px;
+    margin: 0 auto;
+    margin-top:30px;
+    margin-bottom:0;
+}
+
+.mainMenu{
+    /* z-index: 10; */
+    background-color: rgb(128, 0, 49);
+    width: 100%;
+    height:200px;
+}
+
+
+/* THIS IS HOME PAGE MENU */
+
+.menu{
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    width:33%;
+    max-width: 600px;
+    min-width:300px;
+    z-index: 100;
+}
+    
+  .navbar{
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    height:100px;
+    /* z-index: 100; */
+    background-color:magenta;
+  }
+
+.logo{
+    font-weight:100px;
+    font-style: italic;
+    font-size:35px;
+  }

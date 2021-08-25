@@ -6,6 +6,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { useRouter } from 'next/router'
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,25 +18,26 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   },
   media: {
-    height: 300,
+    height: 350,
   },
   cards: {
-    maxWidth: 450,
+    maxWidth: 800,
   },
 }));
 
-export default function Home({userName}) {
-      const classes = useStyles();
+export default function Users({repos}) {
+        const classes = useStyles();
+
   return (
+
  <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={12}>
         <Grid item xs={3} >
-          <Paper className={classes.paper}>
-                <CardActionArea>
+          <Paper className={classes.paper}>               
                     <CardMedia
                         component='img'
                         className={classes.media}
@@ -40,55 +46,53 @@ export default function Home({userName}) {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h3" component="h3">
-                            The user's name
+                            
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h5">
-                            @username   
+                          
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce urna et urna, nulla quis nisi ac. Accumsan ut ut amet consequat sit sed accumsan mi.
                         </Typography>
                     </CardContent>
-                </CardActionArea>
             </Paper> 
         </Grid>
-
         <Grid item xs={8}>
+               <CardContent>
                <Typography gutterBottom variant="h2" component="h2">
                      Repositories
-                </Typography>
-                <div className={classes.cards}>
+               </Typography>
+               </CardContent>
+                {repos.map(
+                  (repo) =>
+                    <div className={classes.cards}>
                 <CardActionArea>
                      <CardContent>
                          <Typography gutterBottom variant="h5" component="h5">
-                            NumeRepo
+                            Repo name: {repo.name}
                          </Typography>
                          <Typography variant="body2" color="textSecondary" component="p">
-                             Cursus in ante donec dolor nisl.  
+                             Description: {repo.description}
                          </Typography>
                          <Typography gutterBottom variant="h6" component="h6">
-                            JavaScript
+                            Language:   {repo.language}
                          </Typography>
                      </CardContent>
-                </CardActionArea>    
+                </CardActionArea>     
                 </div>
-                <div className={classes.cards}>
-                 <CardActionArea>
-                     <CardContent>
-                         <Typography gutterBottom variant="h5" component="h5">
-                            NumeRepo
-                         </Typography>
-                         <Typography variant="body2" color="textSecondary" component="p">
-                             Cursus in ante donec dolor nisl.  
-                         </Typography>
-                         <Typography gutterBottom variant="h6" component="h6">
-                            JavaScript
-                         </Typography>
-                     </CardContent>
-                </CardActionArea> 
-                </div>
+
+                )}
+                
         </Grid>
     </Grid>
  </div>
-  );
+  );  
+}
+export async function getServerSideProps(context) {
+  const {userName} = context.query;
+  // Fetch data from external API
+  const res = await fetch(`https://api.github.com/users/${userName}/repos`)
+  const repos = await res.json()
+  // Pass data to the page via props
+  return {props: {repos}}
 }

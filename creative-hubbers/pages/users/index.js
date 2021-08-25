@@ -1,97 +1,92 @@
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from "@material-ui/core";
 import React from 'react';
-import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Typography } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    margin: '20px 20px'
+    flexGrow: 1,
   },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
-  content: {
-    flex: '1 0 auto',
+  media: {
+    height: 350,
   },
-  cover: {
-    width: '25%',
-    height: '100%',
+  cards: {
+    maxWidth: 800,
   },
 }));
 
-
-export default function Home() {
+export default function Users({ repos }) {
   const classes = useStyles();
 
   return (
-    
-
-    <Grid container>
-       <Card className={classes.root}>
-          <CardMedia
-        className={classes.cover}
-        image='https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80'
-        title="Live from space album cover"
-      />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            The user's name
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            No. of repos
-          </Typography>
-          <Typography component="h6">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, incidunt quisquam animi recusandae cupiditate dolores earum sit excepturi ipsa suscipit culpa voluptates, esse dicta provident maxime id ullam, omnis corrupti! Necessitatibus autem corporis voluptatem dolorum explicabo? Dolorem ipsam dolorum dolor facilis cum maxime delectus nostrum qui distinctio! Ipsum facere quae quam voluptatem, eos consequatur ex error dignissimos vero, 
-          </Typography>
-        </CardContent>
-      </div>     
-    </Card>
-       <Card className={classes.root}>
-          <CardMedia
-        className={classes.cover}
-        image='https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80'
-        title="Live from space album cover"
-      />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            The user's name
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            No. of repos
-          </Typography>
-          <Typography component="h6">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, incidunt quisquam animi recusandae cupiditate dolores earum sit excepturi ipsa suscipit culpa voluptates, esse dicta provident maxime id ullam, omnis corrupti! Necessitatibus autem corporis voluptatem dolorum explicabo? Dolorem ipsam dolorum dolor facilis cum maxime delectus nostrum qui distinctio! Ipsum facere quae quam voluptatem, eos consequatur ex error dignissimos vero, 
-          </Typography>
-        </CardContent>
-      </div>     
-    </Card>
-       <Card className={classes.root}>
-          <CardMedia
-        className={classes.cover}
-        image='https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80'
-        title="Live from space album cover"
-      />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            The user's name
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            No. of repos
-          </Typography>
-          <Typography component="h6">
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, incidunt quisquam animi recusandae cupiditate dolores earum sit excepturi ipsa suscipit culpa voluptates, esse dicta provident maxime id ullam, omnis corrupti! Necessitatibus autem corporis voluptatem dolorum explicabo? Dolorem ipsam dolorum dolor facilis cum maxime delectus nostrum qui distinctio! Ipsum facere quae quam voluptatem, eos consequatur ex error dignissimos vero, 
-          </Typography>
-        </CardContent>
-      </div>     
-    </Card> 
-    </Grid>
+    <div className={classes.root}>
+      <Grid container spacing={12}>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+            <CardMedia
+              component='img'
+              className={classes.media}
+              src='https://images.unsplash.com/photo-1498804103079-a6351b050096?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80'
+              title='Contemplative Reptile'
+            />
+            <CardContent>
+              <Typography gutterBottom variant='h3' component='h3'></Typography>
+              <Typography gutterBottom variant='h5' component='h5'></Typography>
+              <Typography variant='body2' color='textSecondary' component='p'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                urna et urna, nulla quis nisi ac. Accumsan ut ut amet consequat
+                sit sed accumsan mi.
+              </Typography>
+            </CardContent>
+          </Paper>
+        </Grid>
+        <Grid item xs={8}>
+          <CardContent>
+            <Typography gutterBottom variant='h2' component='h2'>
+              Repositories
+            </Typography>
+          </CardContent>
+          {repos.map((repo) => (
+            <div className={classes.cards}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography gutterBottom variant='h5' component='h5'>
+                    Repo name: {repo.name}
+                  </Typography>
+                  <Typography
+                    variant='body2'
+                    color='textSecondary'
+                    component='p'>
+                    Description: {repo.description}
+                  </Typography>
+                  <Typography gutterBottom variant='h6' component='h6'>
+                    Language: {repo.language}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </div>
+          ))}
+        </Grid>
+      </Grid>
+    </div>
   );
+}
+export async function getServerSideProps(context) {
+  const { userName } = context.query;
+  // Fetch data from external API
+  const res = await fetch(`https://api.github.com/users/${userName}/repos`);
+  const repos = await res.json();
+  // Pass data to the page via props
+  return { props: { repos } };
 }
