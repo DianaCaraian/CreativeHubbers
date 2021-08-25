@@ -55,20 +55,6 @@ const repoName = () => {
   //   })();
   // };
 
-  // const fetchRepo = () => {
-  //   let url =
-  //     "https://api.github.com/repos/" + userName + "/" + repoName + "/contents";
-  //   (async () => {
-  //     const res = await fetch(url);
-  //     const data = await res.json();
-
-  //     console.log("data: ", data);
-  //     console.log("url: ", url);
-
-  //     dispatch(getRepos(data));
-  //   })();
-  // };
-
   // fetchRepo();
 
   const repos = useSelector((state) => state.user.repos);
