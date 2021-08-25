@@ -30,34 +30,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const repoName = () => {
-  const classes = useStyles();
   const [repoDetails, setRepoDetails] = useState({});
 
   const router = useRouter();
+  const dispatch = useDispatch(); //Declanseaza actiunea
 
   const { userName } = router.query;
   const { repoName } = router.query;
-
-  console.log("userName: ", userName);
-  console.log("repoName: ", repoName);
-
-  const dispatch = useDispatch(); //Declanseaza actiunea
-
-  // const fetchRepo = () => {
-  //   let url =
-  //     "https://api.github.com/repos/" + userName + "/" + repoName + "/contents";
-  //   (async () => {
-  //     const res = await fetch(url);
-  //     const data = await res.json();
-
-  //     console.log("data: ", data);
-  //     console.log("url: ", url);
-
-  //     dispatch(getRepos(data));
-  //   })();
-  // };
-
-  // fetchRepo();
 
   useEffect(() => {
     if (userName !== undefined) {
@@ -70,12 +49,46 @@ const repoName = () => {
     }
   }, [userName]);
 
+  console.log("userName: ", userName);
+  console.log("repoName: ", repoName);
+
+  const fetchRepo = (additionalDirs = "") => {
+    if (userName && repoName) {
+      let dir;
+
+      if (additionalDirs) {
+        dir = "/" + additionalDirs;
+      } else {
+        dir = "";
+      }
+      let url =
+        "https://api.github.com/repos/" +
+        userName +
+        "/" +
+        repoName +
+        "/contents" +
+        dir;
+      (async () => {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        console.log("data: ", data);
+        console.log("url: ", url);
+
+        dispatch(getRepos(data));
+      })();
+    }
+  };
+  useEffect(fetchRepo, [router.isReady]);
+
   const repos = useSelector((state) => state.user.repos);
+
+  console.log("reoute: ", router);
+  var newUrl = "";
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Repository</h2>
-
       {repoDetails.language !== undefined ? (
         <div className={styles.language}>
           Language: <i>{repoDetails.language}</i>
@@ -83,41 +96,14 @@ const repoName = () => {
       ) : (
         <div></div>
       )}
-
-      <button
-        onClick={() => {
-          let url =
-            "https://api.github.com/repos/" +
-            userName +
-            "/" +
-            repoName +
-            "/contents";
-          (async () => {
-            const res = await fetch(url);
-            const data = await res.json();
-
-            console.log("data: ", data);
-            console.log("url: ", url);
-
-            dispatch(getRepos(data));
-          })();
-        }}
-      >
-        APASA
-      </button>
-      {console.log("repo: ", repos)}
-
       <div className={styles.content}>
         <h3 className={styles.foldername}>{repoName}</h3>
         <div className={styles.fileContainer}>
-          {repos !== undefined ? (
+          {repos.length !== 0 ? (
             repos.map((repo) => (
               <div key={repo.name}>
                 {repo.type === "dir" ? (
-                  <Link
-                    className="btn btn-primary link"
-                    className={styles.fileElem}
-                  >
+                  <Link className="btn btn-primary" className={styles.fileElem}>
                     <CardActionArea
                       onClick={() => {
                         fetchRepo(repo.name);
@@ -125,9 +111,11 @@ const repoName = () => {
                     >
                       <div className={styles.folder}>
                         <FolderIcon className={styles.icon} />
-                        <Typography gutterBottom variant="h4" component="h4">
-                          {repo.name}
-                        </Typography>
+                        <a href="#">
+                          <Typography gutterBottom variant="h4" component="h4">
+                            {repo.name}
+                          </Typography>
+                        </a>
                       </div>
                     </CardActionArea>
                   </Link>
@@ -139,9 +127,7 @@ const repoName = () => {
                       component="h4"
                       className={styles.fileElem}
                     >
-                      <div>
-                        <InsertDriveFileOutlinedIcon className={styles.icon} />
-                      </div>
+                      <InsertDriveFileOutlinedIcon className={styles.icon} />
                       <div
                         onClick={() => console.log("Apasa pe buton")}
                         className={styles.fileBtn}
