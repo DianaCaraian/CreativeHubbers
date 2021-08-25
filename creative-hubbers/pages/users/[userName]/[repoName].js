@@ -102,9 +102,12 @@ const repoName = () => {
         <div className={styles.fileContainer}>
           {repos.length !== 0 ? (
             repos.map((repo) => (
-              <div className={styles.fileElem} key={repo.name}>
+              <div key={repo.name}>
                 {repo.type === "dir" ? (
-                  <Link className="btn btn-primary">
+                  <Link
+                    className="btn btn-primary link"
+                    className={styles.fileElem}
+                  >
                     <CardActionArea
                       onClick={() => {
                         fetchRepo(repo.name);
@@ -112,18 +115,23 @@ const repoName = () => {
                     >
                       <div className={styles.folder}>
                         <FolderIcon className={styles.icon} />
-                        <a href="#">
-                          <Typography gutterBottom variant="h4" component="h4">
-                            {repo.name}
-                          </Typography>
-                        </a>
+                        <Typography gutterBottom variant="h4" component="h4">
+                          {repo.name}
+                        </Typography>
                       </div>
                     </CardActionArea>
                   </Link>
                 ) : (
                   <div>
-                    <Typography gutterBottom variant="h4" component="h4">
-                      <InsertDriveFileOutlinedIcon className={styles.icon} />
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="h4"
+                      className={styles.fileElem}
+                    >
+                      <div>
+                        <InsertDriveFileOutlinedIcon className={styles.icon} />
+                      </div>
                       <div
                         onClick={() => console.log("Apasa pe buton")}
                         className={styles.fileBtn}
