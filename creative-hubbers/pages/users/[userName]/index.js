@@ -9,7 +9,7 @@ import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import { GridList } from '@material-ui/core';
-import { useRouter } from 'next/router';
+import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {

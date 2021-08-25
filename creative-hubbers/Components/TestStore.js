@@ -55,7 +55,7 @@ const TestStore = () => {
             <div className={classes.details}>
               <CardContent className={classes.content}>
                 <Typography component="h2" variant="h2">
-                  {users.login}SALUT
+                  {users.login}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   {users.public_repos} repos - {users.location}
