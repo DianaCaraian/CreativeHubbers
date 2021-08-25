@@ -14,10 +14,11 @@ import { Button } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    margin: '20px 20px',
+    margin: '0 auto',
     height: '500px',
-    width: '2000px',
+    width: '1000px',
     alignItems: 'center',
+    boxShadow: 'inset 0 0 10px #000000'
   },
   details: {
     display: 'flex',
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: '20%',
+    width: '25%',
     height: '100%',
   },
   subt: {
