@@ -9,14 +9,7 @@ import { Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { useRouter } from 'next/router'
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`https://api.github.com/users/facebook/repos`)
-  const repos = await res.json()
 
-  // Pass data to the page via props
-  return { props: { repos } }
-}
 
 
 
@@ -39,9 +32,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home({repos}) {
       const classes = useStyles();
-        const router = useRouter()
+        const router = useRouter();
         const {userName} = router.query;
-  return (
+  async function getServerSideProps(userName) {
+  // Fetch data from external API
+  const res = await fetch(`https://api.github.com/users/${userName}/repos`)
+  const repos = await res.json()
+  return repos
+  
+  // Pass data to the page via props
+   }
+   getServerSideProps(userName);
+   console.log(repos)
+  
+        return (
 
  <div className={classes.root}>
       <Grid container spacing={12}>
@@ -66,36 +70,39 @@ export default function Home({repos}) {
                     </CardContent>
             </Paper> 
         </Grid>
+        
         <Grid item xs={8}>
                <CardContent>
                <Typography gutterBottom variant="h2" component="h2">
                      Repositories
                </Typography>
                </CardContent>
-                {repos.map(
-                  (repo) =>
-                    <div className={classes.cards}>
-                <CardActionArea>
-                     <CardContent>
-                         <Typography gutterBottom variant="h5" component="h5">
-                            {repo.name}
-                         </Typography>
-                         <Typography variant="body2" color="textSecondary" component="p">
-                             {repo.description}
-                         </Typography>
-                         <Typography gutterBottom variant="h6" component="h6">
-                            {repo.language}
-                         </Typography>
-                     </CardContent>
-                </CardActionArea>    
-               
-                </div>
-
-                )}
+               <ul id='userRepos'>Lista repos</ul>
                 
-                <Button variant="outlined" color="primary" onClick={() => requestUserRepos('OliverCosma')}>Buton</Button>                
+                <Button variant="outlined" color="primary" onClick={() => {
+                  let url = `https://api.github.com/users/${userName}/repos`;
+                  
+                  (async () => {
+                     const res = await fetch(url)
+                     const repos = await res.json();
+                     
+                    for (let i in repos)
+                    {
+                                  let ul = document.getElementById('userRepos');
+                                  let li = document.createElement('li');
+                                  li.innerHTML = (`
+                                  <p>Repo: ${repos[i].name}</p>
+                                  <p>Description: ${repos[i].description}</p>
+                                  <p>language: ${repos[i].language}</p>`)
+                                  ul.appendChild(li);
+
+                    }
+                })();
+              }}>
+                  
+                  Buton</Button>                
         </Grid>
     </Grid>
  </div>
-  );
+ );
 }
