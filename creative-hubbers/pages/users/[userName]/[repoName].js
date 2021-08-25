@@ -76,26 +76,6 @@ const repoName = () => {
     <div className={styles.container}>
       <h2 className={styles.title}>Repository</h2>
 
-      {/* <button
-        onClick={() => {
-          let url =
-            'https://api.github.com/repos/' +
-            userName +
-            '/' +
-            repoName +
-            '/contents';
-          (async () => {
-            const res = await fetch(url);
-            const data = await res.json();
-
-            console.log('data: ', data);
-            console.log('url: ', url);
-
-            dispatch(getRepos(data));
-          })();
-        }}>
-        APASA
-      </button> */}
       {console.log('repo: ', repos)}
 
       <div className={styles.content}>
@@ -108,11 +88,12 @@ const repoName = () => {
                   <CardActionArea
                     onClick={() => {
                       fetchRepo(repo.name);
-                    }}>
+                    }}
+                  >
                     <div className={styles.folder}>
                       <FolderIcon className={styles.icon} />
-                      <a href='#'>
-                        <Typography gutterBottom variant='h4' component='h4'>
+                      <a href="#">
+                        <Typography gutterBottom variant="h4" component="h4">
                           {repo.name}
                         </Typography>
                       </a>
@@ -120,7 +101,7 @@ const repoName = () => {
                   </CardActionArea>
                 ) : (
                   <div>
-                    <Typography gutterBottom variant='h4' component='h4'>
+                    <Typography gutterBottom variant="h4" component="h4">
                       <InsertDriveFileOutlinedIcon className={styles.icon} />
                       {repo.name}
                     </Typography>
