@@ -44,6 +44,7 @@ export default function ButtonAppBar() {
           <Typography className={classes.logo}>
             CreativeHubbers
           </Typography>
+          
           <Box className = {classes.menu}>
             <Typography>
             <a href ={'../Tasks'}>Home</a>

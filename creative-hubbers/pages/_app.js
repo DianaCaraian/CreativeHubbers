@@ -28,9 +28,7 @@ function MyApp({ Component, pageProps }) {
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <Layout>
-              <Component {...pageProps} />
-              <Typography variant="h1">Hello</Typography>
-            </Layout>
+            </Layout><Component {...pageProps} />
           </ThemeProvider>
         </Provider>
      
