@@ -1,5 +1,3 @@
-//we can delete this afterwards, it is just to test the state manager
-
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid } from "@material-ui/core";
@@ -10,7 +8,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { useSelector } from 'react-redux';
 import Link from 'next/link'
 import { Button } from "@material-ui/core";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -42,9 +39,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'hsl(197, 37%, 64%)'
   },
 }));
-
 const TestStore = () => {
-
   const classes = useStyles();
   const users = useSelector((state) => state.user.users); //un fel de subscribe la change
   console.log('users: ', users);
@@ -76,13 +71,9 @@ const TestStore = () => {
         </CardContent>
       </div>     
     </Card>
-
-
     </Grid>
     </div>
-
     </>
   );
 };
-
 export default TestStore;
