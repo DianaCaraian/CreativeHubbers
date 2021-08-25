@@ -97,29 +97,6 @@ const repoName = () => {
       ) : (
         <div></div>
       )}
-      <button
-        onClick={() => {
-          let url =
-            "https://api.github.com/repos/" +
-            userName +
-            "/" +
-            repoName +
-            "/contents";
-          (async () => {
-            const res = await fetch(url);
-            const data = await res.json();
-
-            console.log("data: ", data);
-            console.log("url: ", url);
-
-            dispatch(getRepos(data));
-          })();
-        }}
-      >
-        APASA
-      </button>{" "}
-      */}
-      {console.log("repo: ", repos)}
       <div className={styles.content}>
         <h3 className={styles.foldername}>{repoName}</h3>
         <div className={styles.fileContainer}>
