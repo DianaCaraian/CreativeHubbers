@@ -7,25 +7,43 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import { Card } from '@material-ui/core';
+import { GridList } from '@material-ui/core';
 
 
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
     flexGrow: 1,
+    width: '60%',
+    height:'575px',
+    backgroundColor: 'white',
+    position: 'relative',
+    margin: '0 auto',
+    top: '175px',
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
+    borderRight: '4px solid transparent',
+    height: '100% '
   },
   media: {
-    height: 350,
+    height: 360,
   },
   cards: {
-    maxWidth: 800,
+    height: '200px',
   },
+  bckCol:{
+    backgroundColor: 'white'
+  },
+  typoBorder: {
+    width: '175px',
+    borderBottom: '1px solid black'
+  }
 }));
 
 export default function Users({repos}) {
@@ -37,7 +55,7 @@ export default function Users({repos}) {
  <div className={classes.root}>
       <Grid container spacing={12}>
         <Grid item xs={3} >
-          <Paper className={classes.paper}>               
+          <Card className={classes.paper}>               
                     <CardMedia
                         component='img'
                         className={classes.media}
@@ -52,17 +70,18 @@ export default function Users({repos}) {
                           {users.login}                          
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce urna et urna, nulla quis nisi ac. Accumsan ut ut amet consequat sit sed accumsan mi.
+                           {users.bio}
                         </Typography>
                     </CardContent>
-            </Paper> 
+            </Card> 
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} className = {classes.bckCol}>
                <CardContent>
-               <Typography gutterBottom variant="h2" component="h2">
+               <Typography gutterBottom variant="h2" component="h2" className = {classes.typoBorder}>
                      Repositories
                </Typography>
                </CardContent>
+               <GridList style = {{height:500, width:866, overflow:'auto'}} spacing="5" cols='2'>
                 {repos.map(
                   (repo) =>
                     <div className={classes.cards}>
@@ -80,9 +99,8 @@ export default function Users({repos}) {
                      </CardContent>
                 </CardActionArea>     
                 </div>
-
                 )}
-                
+                </GridList>                
         </Grid>
     </Grid>
  </div>

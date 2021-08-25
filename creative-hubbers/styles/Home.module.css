@@ -7,6 +7,8 @@
     position: fixed;
     width:100%;
     min-height: 100vh;
+    opacity: .95;
+    z-index: -200;
 }
 
 .heroBranchesImage{
