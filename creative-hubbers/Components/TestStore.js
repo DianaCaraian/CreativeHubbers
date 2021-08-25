@@ -45,7 +45,6 @@ const TestStore = () => {
   console.log('users: ', users);
   return (
     <>
-      <Typography variant='h6'>{users.login}</Typography>
       <div className = {classes.mareDiv}>
       <Grid container className = {classes.gridC}>
       <Card className={classes.root}>
