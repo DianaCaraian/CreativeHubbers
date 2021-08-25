@@ -7,6 +7,12 @@ export const changeName = (name) => {
 export const getUsers = (payload) => {
   return {
     type: 'GET_USERS',
-    payload: payload
+    payload: payload,
+  };
+};
+export const getRepos = (payload) => {
+  return {
+    type: 'GET_REPOS',
+    payload: payload,
   };
 };
