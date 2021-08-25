@@ -9,6 +9,7 @@ import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import { GridList } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Users({ repos }) {
   const classes = useStyles();
   const users = useSelector((state) => state.user.users);
+  const router = useRouter();
 
   return (
     <div className={classes.root}>
@@ -87,7 +89,7 @@ export default function Users({ repos }) {
           >
             {repos.map((repo) => (
               <div className={classes.cards}>
-                <CardActionArea>
+                <CardActionArea href={router.asPath + '/' + repo.name}>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h5">
                       Repo name: {repo.name}
