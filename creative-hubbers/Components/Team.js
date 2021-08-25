@@ -25,7 +25,7 @@ const Team = () => {
             width ="150px"
             height= "150px"
           />
-          <Typography variant="h5">
+          <Typography variant="h4">
             Dacian P
           </Typography>
           <Typography variant="h6">
@@ -40,7 +40,7 @@ const Team = () => {
             width ="150px"
             height= "150px"
           />
-            <Typography variant="h5">
+            <Typography variant="h4">
             Nora L
             </Typography>
             <Typography variant="h6">
@@ -55,7 +55,7 @@ const Team = () => {
             width ="150px"
             height= "150px"
           />
-           <Typography variant="h5">
+           <Typography variant="h4">
             Honorius S
             </Typography>
             <Typography variant="h6">
@@ -70,7 +70,7 @@ const Team = () => {
             width ="150px"
             height= "150px"
           />
-           <Typography variant="h5">
+           <Typography variant="h4">
             Diana C
             </Typography>
             <Typography variant="h6">
@@ -85,7 +85,7 @@ const Team = () => {
             width ="150px"
             height= "150px"
           />
-           <Typography variant="h5">
+           <Typography variant="h4">
             Oliver C
             </Typography>
             <Typography variant="h6">

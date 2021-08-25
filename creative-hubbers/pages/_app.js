@@ -1,11 +1,10 @@
 import '../styles/globals.css';
 import '@fontsource/lexend';
 import Typography from "@material-ui/core/Typography";
-import MainPage from '../Components/MainPage'
+import MainPage from '../Components/MainPage';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from '../utils/theme';
 import Layout from '../Components/Layout';
-
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import allReducers from '../reducers';
@@ -19,19 +18,22 @@ function MyApp({ Component, pageProps }) {
     case "Home":
       return (
         <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <MainPage />   
-      </ThemeProvider>
+          <ThemeProvider theme={theme}>
+             <MainPage />   
+          </ThemeProvider>
+        </Provider>
       )
-    default:
+      default:
       return (
-        <ThemeProvider theme={theme}>
-          <Layout>
-            <Component {...pageProps} />
-            <Typography variant="h1">Hello</Typography>
-          </Layout>
-     </ThemeProvider>
-     </Provider>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <Layout>
+              <Component {...pageProps} />
+              <Typography variant="h1">Hello</Typography>
+            </Layout>
+          </ThemeProvider>
+        </Provider>
+     
       );
   }
 };

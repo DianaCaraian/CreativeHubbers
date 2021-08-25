@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
+// import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   menu:{
@@ -20,12 +18,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
     display: "flex",
     justifyContent: "center",
-    height:100
+    alignItems:"center",
+    height:100,
+    zIndex: 100,
+    width:"100%",
+    position:"fixed",
+    color:"white"
+
   },
   logo:{
+    position:"absolute",
+    left:0,
     fontWeight: "100",
     fontStyle:"italic",
-    fontSize:35
+    fontSize:35,
+    left:20
   }
 }));
 
@@ -33,25 +40,21 @@ export default function ButtonAppBar() {
   const classes = useStyles();
 
   return (
-    <div>
-      <AppBar position="fixed" className={classes.navbar}>
-        <Toolbar>
+    <div className={classes.navbar}>  
           <Typography className={classes.logo}>
             CreativeHubbers
           </Typography>
           <Box className = {classes.menu}>
-            <Typography variant="h6">
-              Home
+            <Typography>
+            <a href ={'../Tasks'}>Home</a>
+            </Typography>   
+            <Typography>
+              <a href ="#">Team</a>
             </Typography>
-            <Typography variant="h6">
-              Team
-            </Typography>
-            <Typography variant="h6">
-              Requirements
+            <Typography>
+              <a href="#">Requirements</a>
             </Typography>
           </Box>
-        </Toolbar>
-      </AppBar>
     </div>
   );
 }

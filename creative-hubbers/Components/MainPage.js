@@ -4,14 +4,18 @@ import { Box } from "@material-ui/core";
 import MainMenu from './MainMenu';
 import leftHeroBranchesImage from '../Images/heroImage.png'
 import heroAStrouantImage from '../Images/astro.png'
-// import HeroContent from '../Components/HeroContent'
-// import Team from '../Components/Team'
-// import TheTasks from '../Components/TheTasks'
+import HeroContent from '../Components/HeroContent'
+import Team from '../Components/Team'
+import TheTasks from './Tasks'
+
      
 const MainPage = () =>{
   return <div>
-       <Box className={styles.heroStyle}>
-          <MainMenu />
+    
+       <MainMenu />
+
+       <Box className={styles.heroStyles}>  
+              
           <Box className={styles.heroBranchesImage}>
             <Image 
               className={styles.left}
@@ -31,15 +35,15 @@ const MainPage = () =>{
             />
           </Box>
       </Box>
-      {/* <Box className={styles.HeroContent}>
+      <Box className={styles.HeroContent} id="abc">
           <HeroContent />
       </Box>
-      <Box className={styles.HeroContent}>
+      <Box className={styles.HeroContent} id ="HC">
           <Team />
       </Box>
       <Box className={`${styles.HeroContent} ${styles.HeroContentTasks}`} >
           <TheTasks />
-      </Box> */}
+      </Box>
   </div>
 }
     
