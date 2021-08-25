@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
   },
   media: {
@@ -30,9 +30,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Home({repos}) {
-      const classes = useStyles();
-        const router = useRouter();
-        const {userName} = router.query;
+        const classes = useStyles();
+
   return (
 
  <div className={classes.root}>
@@ -50,7 +49,7 @@ export default function Home({repos}) {
                             
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h5">
-                            {userName}   
+                          
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce urna et urna, nulla quis nisi ac. Accumsan ut ut amet consequat sit sed accumsan mi.
