@@ -8,6 +8,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { getRepos } from "../../../actions";
+import { Link } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const repoName = () => {
   const classes = useStyles();
+  const [repoDetails, setRepoDetails] = useState({});
 
   const router = useRouter();
 
@@ -57,11 +59,30 @@ const repoName = () => {
 
   // fetchRepo();
 
+  useEffect(() => {
+    if (userName !== undefined) {
+      fetch("https://api.github.com/repos/" + userName + "/" + repoName)
+        .then((data) => data.json())
+        .then((res) => {
+          setRepoDetails(res);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [userName]);
+
   const repos = useSelector((state) => state.user.repos);
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Repository</h2>
+
+      {repoDetails.language !== undefined ? (
+        <div className={styles.language}>
+          Language: <i>{repoDetails.language}</i>
+        </div>
+      ) : (
+        <div></div>
+      )}
 
       <button
         onClick={() => {
