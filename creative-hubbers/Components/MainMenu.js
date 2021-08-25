@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-// import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   menu:{
@@ -47,7 +46,7 @@ export default function ButtonAppBar() {
           
           <Box className = {classes.menu}>
             <Typography>
-            <a href ={'../Tasks'}>Home</a>
+            <a href ={'http://localhost:3000'}>Home</a>
             </Typography>   
             <Typography>
               <a href ="#">Team</a>

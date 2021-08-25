@@ -13,33 +13,45 @@ import { GridList } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
     flexGrow: 1,
-
+    width: '60%',
+    height:'575px',
+    backgroundColor: 'white',
+    position: 'relative',
+    margin: '0 auto',
+    top: '175px',
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
+    borderRight: '4px solid transparent',
+    height: '100% '
   },
   media: {
-    height: 460,
+    height: 360,
   },
   cards: {
-    height:240,
-    width: 600,
+    height: '200px',
   },
+  bckCol:{
+    backgroundColor: 'white'
+  },
+  typoBorder: {
+    width: '175px',
+    borderBottom: '1px solid black'
+  }
 }));
 
-export default function Users({repos}) {
-        const classes = useStyles();
-        const users = useSelector((state) => state.user.users);
+export default function Users({ repos }) {
+  const classes = useStyles();
 
   return (
-
- <div className={classes.root}>
+    <div className={classes.root}>
       <Grid container spacing={12}>
-        <Grid item xs={4} >
-          <Paper className={classes.paper}>               
+        <Grid item xs={3} >
+          <Card className={classes.paper}>               
                     <CardMedia
                         component='img'
                         className={classes.media}
@@ -57,15 +69,15 @@ export default function Users({repos}) {
                         {users.bio}                      
                         </Typography>
                     </CardContent>
-            </Paper> 
+            </Card> 
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} className = {classes.bckCol}>
                <CardContent>
-               <Typography gutterBottom variant="h2" component="h2">
+               <Typography gutterBottom variant="h2" component="h2" className = {classes.typoBorder}>
                      Repositories
                </Typography>
                </CardContent>
-               <GridList style = {{maxHeight:600, maxWidth:1000, overflow:'auto'}} spacing="5" cols='2'>
+               <GridList style = {{height:500, width:866, overflow:'auto'}} spacing="5" cols='2'>
                 {repos.map(
                   (repo) =>
                     <div className={classes.cards}>
@@ -83,20 +95,18 @@ export default function Users({repos}) {
                      </CardContent>
                 </CardActionArea>     
                 </div>
-
                 )}
-                </GridList>
-                
+                </GridList>                
         </Grid>
-    </Grid>
- </div>
-  );  
+      </Grid>
+    </div>
+  );
 }
 export async function getServerSideProps(context) {
-  const {userName} = context.query;
+  const { userName } = context.query;
   // Fetch data from external API
-  const res = await fetch(`https://api.github.com/users/${userName}/repos`)
-  const repos = await res.json()
+  const res = await fetch(`https://api.github.com/users/${userName}/repos`);
+  const repos = await res.json();
   // Pass data to the page via props
-  return {props: {repos}}
+  return { props: { repos } };
 }
