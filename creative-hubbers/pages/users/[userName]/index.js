@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { Card } from '@material-ui/core';
 import { GridList } from '@material-ui/core';
 import { Link } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
