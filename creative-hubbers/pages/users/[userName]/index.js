@@ -1,47 +1,47 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import { Typography } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-import { Card } from '@material-ui/core';
-import { GridList } from '@material-ui/core';
-import { Link } from '@material-ui/core';
-import { useRouter } from 'next/router';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import { Typography } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { Card } from "@material-ui/core";
+import { GridList } from "@material-ui/core";
+import { Link } from "@material-ui/core";
+import { useRouter } from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
     flexGrow: 1,
-    width: '60%',
-    height: '575px',
-    backgroundColor: 'white',
-    position: 'relative',
-    margin: '0 auto',
-    top: '175px',
+    width: "60%",
+    height: "575px",
+    backgroundColor: "white",
+    position: "relative",
+    margin: "0 auto",
+    top: "175px",
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
-    borderRight: '4px solid transparent',
-    height: '100% ',
+    borderRight: "4px solid transparent",
+    height: "100% ",
   },
   media: {
     height: 360,
   },
   cards: {
-    height: '200px',
+    height: "200px",
   },
   bckCol: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   typoBorder: {
-    width: '175px',
-    borderBottom: '1px solid black',
+    width: "175px",
+    borderBottom: "1px solid black",
   },
 }));
 
@@ -84,15 +84,20 @@ export default function Users({ repos }) {
             </Typography>
           </CardContent>
           <GridList
-            style={{ height: 500, width: 866, overflow: 'auto' }}
+            style={{ height: 500, width: 866, overflow: "auto" }}
             spacing="5"
             cols="2"
           >
             {repos.map((repo) => (
               <div className={classes.cards}>
-                <CardActionArea href={router.asPath + '/' + repo.name}>
+                <CardActionArea href={router.asPath + "/" + repo.name}>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="h5">
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h5"
+                      className="repoName"
+                    >
                       Repo name: {repo.name}
                     </Typography>
                     <Typography
@@ -118,8 +123,10 @@ export default function Users({ repos }) {
 export async function getServerSideProps(context) {
   const { userName } = context.query;
   // Fetch data from external API
-  const res = await fetch(`https://api.github.com/users/${userName}/repos?per_page=100`)
-  const repos = await res.json()
+  const res = await fetch(
+    `https://api.github.com/users/${userName}/repos?per_page=100`
+  );
+  const repos = await res.json();
   // Pass data to the page via props
   return { props: { repos } };
 }
