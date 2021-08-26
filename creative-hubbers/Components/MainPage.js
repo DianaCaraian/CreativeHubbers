@@ -41,7 +41,7 @@ const MainPage = () =>{
       <Box className={styles.HeroContent} id ="HC">
           <Team />
       </Box>
-      <Box className={`${styles.HeroContent} ${styles.HeroContentTasks}`} >
+      <Box className={`${styles.HeroContent} ${styles.HeroContentTasks}`} id ="REQ" >
           <TheTasks />
       </Box>
   </div>
