@@ -49,10 +49,10 @@ export default function ButtonAppBar() {
             <a href ={'http://localhost:3000'}>Home</a>
             </Typography>   
             <Typography>
-              <a href ="#">Team</a>
+              <a href ="#HC">Team</a>
             </Typography>
             <Typography>
-              <a href="#">Requirements</a>
+              <a href="#REQ">Requirements</a>
             </Typography>
           </Box>
     </div>

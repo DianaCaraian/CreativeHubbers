@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     margin: '0 auto',
     top: '175px',
+    opacity: '0.90'
   },
   paper: {
     padding: theme.spacing(2),
