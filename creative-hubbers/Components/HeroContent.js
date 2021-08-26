@@ -17,10 +17,10 @@ const HeroContent = () => {
 
     return <div>
         <Box className = {styles.heroBoxes}>
-            <Typography variant="h1" >
+            <Typography variant="h1" component="h1" >
                 W E L C O M E
             </Typography>
-            <Typography variant="h3">
+            <Typography variant="h3" >
                 to a new experience of git
             </Typography>
            <input
