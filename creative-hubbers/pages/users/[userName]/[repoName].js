@@ -129,7 +129,7 @@ const repoName = () => {
             repos.map((repo) => (
               <div key={repo.name}>
                 {repo.type === 'dir' ? (
-                  <Link className="btn btn-primary" className={styles.fileElem}>
+                  <Link className="btn btn-primary" className={styles.fileElem} id={repo.name}>
                     <CardActionArea
                       onClick={() => {
                         let url =

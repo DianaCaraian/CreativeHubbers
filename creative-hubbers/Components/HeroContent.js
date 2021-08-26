@@ -33,6 +33,7 @@ const HeroContent = () => {
       />
       <Link href="http://localhost:3000/users">
       <Button
+        className="searchBtn"
         variant="contained"
         color="primary"
         onClick={() => {

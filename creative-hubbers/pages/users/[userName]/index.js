@@ -92,7 +92,7 @@ export default function Users({ repos }) {
               <div className={classes.cards}>
                 <CardActionArea href={router.asPath + '/' + repo.name}>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="h5">
+                    <Typography className="repoName" gutterBottom variant="h5" component="h5">
                       Repo name: {repo.name}
                     </Typography>
                     <Typography
