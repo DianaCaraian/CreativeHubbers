@@ -14,39 +14,46 @@ const HeroContent = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch(); //Declanseaza actiunea
 
-  return (
-    <div>
-      <Box className={styles.heroBoxes}>
-        <Typography variant="h1">W E L C O M E</Typography>
-        <Typography variant="h3">to a new experience of git</Typography>
-        <input
-          type="text"
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-          value={name}
-          className={styles.inputz}
-        />
-        <Link href="http://localhost:3000/users">
-          <Button
-            variant="contained"
-            color="primary"
-            className="searchBtn"
-            onClick={() => {
-              let url = "https://api.github.com/users/" + name;
-              (async () => {
-                const res = await fetch(url);
-                const data = await res.json();
-                (() => {
-                  dispatch(getUsers(data));
-                })();
-              })();
-            }}
-          >
-            Search
-          </Button>
-        </Link>
-      </Box>
+    return <div>
+        <Box className = {styles.heroBoxes}>
+            <Typography variant="h1" component="h1" >
+                W E L C O M E
+            </Typography>
+            <Typography variant="h3" >
+                to a new experience of git
+            </Typography>
+           <input
+        type="text"
+        onChange={(event) => {
+          setName(event.target.value);
+        }}
+        value={name}
+        className = {styles.inputz}
+      />
+      <Link href="http://localhost:3000/users">
+      <Button
+        variant="contained"
+        color="primary"
+        className="searchBtn"
+        onClick={() => {
+          let url = "https://api.github.com/users/" + name;
+          (async () => {
+            const res = await fetch(url);
+            const data = await res.json();
+            (() => {
+              dispatch(getUsers(data));
+            })();
+          })();
+        }}
+      >
+        Search
+      </Button>  
+      </Link>
+        </Box>
+       
+
+        
+        
     </div>
   );
 };

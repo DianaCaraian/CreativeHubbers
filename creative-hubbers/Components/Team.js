@@ -20,18 +20,18 @@ const Team = () => {
         <Box className={styles.teamBox}>
           <Image 
             className={styles.teamImages}
-            src = {dacian}
+            src = {honorius}
             alt = "Aici este un shape"
             width ="150px"
             height= "150px"
           />
-          <Typography variant="h4">
-            Dacian P
-          </Typography>
-          <Typography variant="h6">
-            Js Guru
-          </Typography>
-        </Box>
+           <Typography variant="h4">
+            Honorius S
+            </Typography>
+            <Typography variant="h6">
+            UI Dragon
+            </Typography>
+        </Box>      
         <Box className={styles.teamBox}>
           <Image 
             className={styles.teamImages}
@@ -44,23 +44,23 @@ const Team = () => {
             Nora L
             </Typography>
             <Typography variant="h6">
-            NextJs Guru
+            The Real MVP
             </Typography>
         </Box>
-        <Box className={styles.teamBox}>
+          <Box className={styles.teamBox}>
           <Image 
             className={styles.teamImages}
-            src = {honorius}
+            src = {dacian}
             alt = "Aici este un shape"
             width ="150px"
             height= "150px"
           />
-           <Typography variant="h4">
-            Honorius S
-            </Typography>
-            <Typography variant="h6">
-            UI Dragon
-            </Typography>
+          <Typography variant="h4">
+            Dacian P
+          </Typography>
+          <Typography variant="h6">
+            Locul 1 la commit
+          </Typography>
         </Box>
         <Box className={styles.teamBox}>
           <Image 
@@ -89,7 +89,7 @@ const Team = () => {
             Oliver C
             </Typography>
             <Typography variant="h6">
-            Hacker
+            Coffee addict
             </Typography>
         </Box>
       </Box> 

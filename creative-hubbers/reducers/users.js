@@ -1,4 +1,4 @@
-const initState = { users: [], repo: [], content: [], languages: {} };
+const initState = { users: [], repo: [], content: [], languages: {}, path: '' };
 const userReducer = (state = initState, action) => {
   switch (action.type) {
     case 'GET_USERS': {
@@ -23,6 +23,12 @@ const userReducer = (state = initState, action) => {
       return {
         ...state,
         languages: action.payload,
+      };
+    }
+    case 'SET_PATH': {
+      return {
+        ...state,
+        path: action.payload,
       };
     }
 
