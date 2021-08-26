@@ -1,41 +1,41 @@
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
-import React from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import { useSelector } from "react-redux";
-import Link from "next/link";
-import { Button } from "@material-ui/core";
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
+import React from 'react';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import { useSelector } from 'react-redux';
+import Link from 'next/link';
+import { Button } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    margin: "0 auto",
-    height: "500px",
-    width: "1000px",
-    alignItems: "center",
-    boxShadow: "inset 0 0 10px #000000",
+    display: 'flex',
+    margin: '0 auto',
+    height: '500px',
+    width: '1000px',
+    alignItems: 'center',
+    boxShadow: 'inset 0 0 10px #000000',
   },
   details: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
   },
   content: {
-    flex: "1 0 auto",
+    flex: '1 0 auto',
   },
   cover: {
-    width: "25%",
-    height: "100%",
+    width: '25%',
+    height: '100%',
   },
   subt: {
-    marginBottom: "10px",
+    marginBottom: '10px',
   },
   mareDiv: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 }));
 const TestStore = () => {
@@ -63,7 +63,7 @@ const TestStore = () => {
                 <Typography component="h6" className={classes.subt}>
                   {users.bio}
                 </Typography>
-                <Link href={`http://localhost:3000/users/${users.login}`}>
+                <Link href={`/users/${users.login}`}>
                   <Button variant="contained" color="primary">
                     See Repos
                   </Button>
