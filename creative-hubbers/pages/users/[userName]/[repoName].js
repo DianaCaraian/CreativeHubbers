@@ -52,9 +52,20 @@ const repoName = () => {
     if (userName && repoName) {
       let url = '';
       if (newpath) {
-        url = 'https://api.github.com/repos/' + path + '/' + newpath;
+        if (newpath === repoName) {
+          url =
+            'https://api.github.com/repos/' +
+            userName +
+            '/' +
+            repoName +
+            '/contents';
 
-        dispatch(setPath(path + '/' + newpath));
+          dispatch(setPath(userName + '/' + repoName + '/contents'));
+        } else {
+          url = 'https://api.github.com/repos/' + path + '/' + newpath;
+
+          dispatch(setPath(path + '/' + newpath));
+        }
       } else {
         url = 'https://api.github.com/repos/' + path;
       }
@@ -111,13 +122,12 @@ const repoName = () => {
       <Link href={'/users/' + userName}>
         <h2 className={styles.title}>Repository</h2>
       </Link>
-      {repoDetails.language !== undefined ? (
+      {repoLanguages !== undefined ? (
         <div className={styles.language}>
           {Object.entries(repoLanguages).map(([key, lang], i) => (
-            <div style={{ width: (lang / sumLanguages) * 100 + '%' }}>
+            <div style={{ width: (lang / sumLanguages) * 100 + '%' }} key={i}>
               {key}
               <div
-                key={i}
                 style={{
                   backgroundColor:
                     '#' + Math.floor(Math.random() * 16777215).toString(16),
@@ -132,7 +142,12 @@ const repoName = () => {
         <div></div>
       )}
       <div className={styles.content}>
-        <Link href={'/users/' + userName + '/' + repoName}>
+        <Link
+          onClick={(event) => {
+            event.preventDefault();
+            fetchContent(repoName);
+          }}
+        >
           <h3 className={styles.foldername}>{repoName}</h3>
         </Link>
         <div className={styles.fileContainer}>

@@ -89,7 +89,7 @@ export default function Users({ repos }) {
             cols="2"
           >
             {repos.map((repo) => (
-              <div className={classes.cards}>
+              <div className={classes.cards} key={repo.name}>
                 <CardActionArea href={router.asPath + '/' + repo.name}>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h5">
@@ -118,8 +118,10 @@ export default function Users({ repos }) {
 export async function getServerSideProps(context) {
   const { userName } = context.query;
   // Fetch data from external API
-  const res = await fetch(`https://api.github.com/users/${userName}/repos?per_page=100`)
-  const repos = await res.json()
+  const res = await fetch(
+    `https://api.github.com/users/${userName}/repos?per_page=100`
+  );
+  const repos = await res.json();
   // Pass data to the page via props
   return { props: { repos } };
 }
