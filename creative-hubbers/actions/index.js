@@ -1,18 +1,24 @@
-export const changeName = (name) => {
-  return {
-    type: 'CHANGE_NAME',
-    name: name,
-  };
-};
-export const getUsers = (payload) => { 
+export const getUsers = (payload) => {
   return {
     type: 'GET_USERS',
     payload: payload,
   };
 };
-export const getRepos = (payload) => {
+export const getContent = (payload) => {
   return {
-    type: 'GET_REPOS',
+    type: 'GET_REPOS_CONTENT',
+    payload: payload,
+  };
+};
+export const getRepoDetails = (payload) => {
+  return {
+    type: 'GET_REPO_DETAILS',
+    payload: payload,
+  };
+};
+export const getLanguages = (payload) => {
+  return {
+    type: 'GET_LANGUAGES',
     payload: payload,
   };
 };
