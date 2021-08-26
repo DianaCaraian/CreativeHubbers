@@ -22,3 +22,9 @@ export const getLanguages = (payload) => {
     payload: payload,
   };
 };
+export const setPath = (payload) => {
+  return {
+    type: 'SET_PATH',
+    payload: payload,
+  };
+};

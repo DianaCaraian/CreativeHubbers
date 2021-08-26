@@ -7,7 +7,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContent, getRepoDetails, getLanguages } from '../../../actions';
+import {
+  getContent,
+  getRepoDetails,
+  getLanguages,
+  setPath,
+} from '../../../actions';
 import { Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,34 +35,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const repoName = () => {
-  // const [repoDetails, setRepoDetails] = useState({});
-
   const router = useRouter();
   const dispatch = useDispatch(); //Declanseaza actiunea
 
   const { userName } = router.query;
   const { repoName } = router.query;
+  let path = useSelector((state) => state.user.path);
+  console.log('path ', path);
+  if (userName && repoName && !path) {
+    dispatch(setPath(userName + '/' + repoName + '/contents'));
+  } else {
+    dispatch(setPath(path));
+  }
 
-  console.log('userName: ', userName);
-  console.log('repoName: ', repoName);
-  let path = userName + '/' + repoName + '/contents';
-  const fetchContent = () => {
+  const fetchContent = (newpath) => {
     if (userName && repoName) {
-      let url =
-        'https://api.github.com/repos/' +
-        userName +
-        '/' +
-        repoName +
-        '/contents';
+      let url = '';
+      if (newpath) {
+        url = 'https://api.github.com/repos/' + path + '/' + newpath;
+
+        dispatch(setPath(path + '/' + newpath));
+      } else {
+        url = 'https://api.github.com/repos/' + path;
+      }
       (async () => {
         const res = await fetch(url);
         const data = await res.json();
 
-        console.log('data: ', data);
-        console.log('url: ', url);
-
         dispatch(getContent(data));
       })();
+    }
+  };
+  const fetchRepoDet = () => {
+    if (userName && repoName) {
       (async () => {
         const res = await fetch(
           'https://api.github.com/repos/' + userName + '/' + repoName
@@ -80,7 +90,10 @@ const repoName = () => {
       })();
     }
   };
-  useEffect(fetchContent, [router.isReady]);
+  useEffect(() => {
+    fetchContent('');
+    fetchRepoDet();
+  }, [router.isReady]);
   const sumValues = (obj) => {
     let total = 0;
     for (let value in obj) {
@@ -91,10 +104,8 @@ const repoName = () => {
   const repos = useSelector((state) => state.user.content);
   const repoDetails = useSelector((state) => state.user.repo);
   const repoLanguages = useSelector((state) => state.user.languages);
-  console.log(repoLanguages);
   const sumLanguages = sumValues(repoLanguages);
-  console.log(sumLanguages);
-  // console.log('#' + Math.floor(Math.random() * 16777215).toString(16));
+
   return (
     <div className={styles.container}>
       <Link href={'/users/' + userName}>
@@ -131,19 +142,9 @@ const repoName = () => {
                 {repo.type === 'dir' ? (
                   <Link className="btn btn-primary" className={styles.fileElem}>
                     <CardActionArea
-                      onClick={() => {
-                        let url =
-                          'https://api.github.com/repos/' +
-                          path +
-                          '/' +
-                          repo.name;
-                        (async () => {
-                          const res = await fetch(url);
-                          const data = await res.json();
-
-                          dispatch(getContent(data));
-                        })();
-                        path = path + '/' + repo.name;
+                      onClick={(event) => {
+                        event.preventDefault();
+                        fetchContent(repo.name);
                       }}
                     >
                       <div className={styles.folder}>
