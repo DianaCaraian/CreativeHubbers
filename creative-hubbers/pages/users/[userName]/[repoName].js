@@ -81,7 +81,6 @@ const repoName = () => {
   };
   useEffect(fetchRepo, [router.isReady]);
 
-  // fetchRepo(userName, repoName);
   const repos = useSelector((state) => state.user.repos);
 
   console.log("reoute: ", router);
@@ -104,10 +103,7 @@ const repoName = () => {
             repos.map((repo) => (
               <div key={repo.name}>
                 {repo.type === "dir" ? (
-                  <Link
-                    className="btn btn-primary link"
-                    className={styles.fileElem}
-                  >
+                  <Link className="btn btn-primary" className={styles.fileElem}>
                     <CardActionArea
                       onClick={() => {
                         fetchRepo(repo.name);
@@ -115,9 +111,11 @@ const repoName = () => {
                     >
                       <div className={styles.folder}>
                         <FolderIcon className={styles.icon} />
-                        <Typography gutterBottom variant="h4" component="h4">
-                          {repo.name}
-                        </Typography>
+                        <a href="#">
+                          <Typography gutterBottom variant="h4" component="h4">
+                            {repo.name}
+                          </Typography>
+                        </a>
                       </div>
                     </CardActionArea>
                   </Link>
@@ -129,9 +127,7 @@ const repoName = () => {
                       component="h4"
                       className={styles.fileElem}
                     >
-                      <div>
-                        <InsertDriveFileOutlinedIcon className={styles.icon} />
-                      </div>
+                      <InsertDriveFileOutlinedIcon className={styles.icon} />
                       <div
                         onClick={() => console.log("Apasa pe buton")}
                         className={styles.fileBtn}
