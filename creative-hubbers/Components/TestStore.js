@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    opacity: '0.90'
   },
 }));
 const TestStore = () => {
